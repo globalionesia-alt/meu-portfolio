@@ -27,7 +27,7 @@ const sortedProjects = projects.sort((a, b) => (b.data.date?.getTime() || 0) - (
                         title={project.data.title}
                         description={project.data.description}
                         category={project.data.category}
-                        href={`/projetos/${project.slug}`}
+                        href={`${import.meta.env.BASE_URL}/projetos/${project.slug}`}
                     />
                 ))}
             </div>
