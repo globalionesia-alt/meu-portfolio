@@ -1,0 +1,19 @@
+---
+import experiences from '../data/experience.json';
+---
+
+<div class="relative border-l border-stone-200 ml-3 md:ml-6 space-y-12 py-4">
+    {experiences.map((exp) => (
+        <div class="relative pl-8 md:pl-12">
+            <!-- Dot -->
+            <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-accent ring-4 ring-canvas"></div>
+            
+            <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
+                <h3 class="text-xl font-serif font-semibold text-ink">{exp.role}</h3>
+                <span class="text-sm font-medium text-accent font-sans">{exp.period}</span>
+            </div>
+            <h4 class="text-lg text-stone-700 font-medium mb-2">{exp.company}</h4>
+            <p class="text-stone-600 leading-relaxed">{exp.details}</p>
+        </div>
+    ))}
+</div>

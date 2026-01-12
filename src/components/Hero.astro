@@ -1,0 +1,30 @@
+---
+import profile from '../data/profile.json';
+---
+
+<section class="py-20 px-6 max-w-4xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-10">
+    <!-- Placeholder Photo -->
+    <div class="w-32 h-32 md:w-48 md:h-48 rounded-full bg-stone-200 border-2 border-accent flex-shrink-0 shadow-lg overflow-hidden">
+        <div class="w-full h-full flex items-center justify-center text-stone-400 bg-stone-100">
+           <span class="text-4xl">IR</span>
+        </div>
+        <!-- <img src="/path/to/profile.jpg" alt="Ian Rodrigues" class="w-full h-full object-cover" /> -->
+    </div>
+
+    <div class="text-center md:text-left space-y-4">
+        <div>
+            <h1 class="text-4xl md:text-5xl font-bold text-ink mb-2">{profile.name}</h1>
+            <p class="text-xl md:text-2xl text-stone-600 font-serif italic">{profile.headline}</p>
+        </div>
+        
+        <p class="text-lg text-stone-700 leading-relaxed max-w-2xl">
+            {profile.bio}
+        </p>
+
+        <div class="flex flex-wrap gap-4 justify-center md:justify-start pt-4">
+            <a href={profile.links.lattes} target="_blank" class="px-5 py-2 rounded-full border border-stone-300 hover:border-accent hover:text-accent transition duration-300 text-sm font-medium">Lattes</a>
+            <a href={profile.links.orcid} target="_blank" class="px-5 py-2 rounded-full border border-stone-300 hover:border-accent hover:text-accent transition duration-300 text-sm font-medium">Orcid</a>
+            <a href={profile.links.email} class="px-5 py-2 rounded-full bg-ink text-canvas hover:bg-stone-800 transition duration-300 text-sm font-medium shadow-md">Fale Comigo</a>
+        </div>
+    </div>
+</section>

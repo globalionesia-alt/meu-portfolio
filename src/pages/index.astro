@@ -1,0 +1,49 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import ExperienceTimeline from '../components/ExperienceTimeline.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects');
+const blogPosts = await getCollection('blog');
+const sortedProjects = projects.sort((a, b) => (b.data.date?.getTime() || 0) - (a.data.date?.getTime() || 0));
+---
+
+<Layout title="Ian Rodrigues - Professor & Advogado">
+    <Hero />
+    
+    <section class="py-16 px-6 max-w-4xl mx-auto">
+        <h2 class="text-3xl font-serif font-bold text-ink mb-10 border-b-2 border-accent inline-block pb-2">Experiência Profissional</h2>
+        <ExperienceTimeline />
+    </section>
+
+    <section class="py-16 px-6 bg-stone-100">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-serif font-bold text-ink mb-10 border-b-2 border-accent inline-block pb-2">Projetos em Destaque</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {sortedProjects.map(project => (
+                    <ProjectCard 
+                        title={project.data.title}
+                        description={project.data.description}
+                        category={project.data.category}
+                        href={`/projetos/${project.slug}`}
+                    />
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-6 max-w-4xl mx-auto">
+        <h2 class="text-3xl font-serif font-bold text-ink mb-8 border-b-2 border-accent inline-block pb-2">Publicações recentes</h2>
+        <div class="space-y-6">
+            {blogPosts.map(post => (
+                <article class="p-6 border border-stone-200 rounded-sm hover:shadow-sm transition bg-white">
+                    <div class="text-sm text-stone-500 mb-1">{post.data.publisher} &bull; {post.data.date?.getFullYear()}</div>
+                    <h3 class="text-xl font-serif font-bold text-ink mb-2">{post.data.title}</h3>
+                    <p class="text-stone-700">{post.data.description}</p>
+                </article>
+            ))}
+        </div>
+    </section>
+</Layout>
