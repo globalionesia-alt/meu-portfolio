@@ -40,7 +40,13 @@ const sortedProjects = projects.sort((a, b) => (b.data.date?.getTime() || 0) - (
             {blogPosts.map(post => (
                 <article class="p-6 border border-stone-200 rounded-sm hover:shadow-sm transition bg-white">
                     <div class="text-sm text-stone-500 mb-1">{post.data.publisher} &bull; {post.data.date?.getFullYear()}</div>
-                    <h3 class="text-xl font-serif font-bold text-ink mb-2">{post.data.title}</h3>
+                    <h3 class="text-xl font-serif font-bold text-ink mb-2">
+                        {post.data.url ? (
+                            <a href={post.data.url} target="_blank" class="hover:text-accent transition">{post.data.title}</a>
+                        ) : (
+                            post.data.title
+                        )}
+                    </h3>
                     <p class="text-stone-700">{post.data.description}</p>
                 </article>
             ))}
